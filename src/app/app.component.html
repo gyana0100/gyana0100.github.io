@@ -1,64 +1,68 @@
 <div class="container">
-    <header>
-        <h2>SpaceEx Launch Programs</h2>
-    </header>
-    <section class="container-body">
-        <aside class="filter-box">
-            <div class="filter">
-                <div class="filter-heading">Launch Year</div>
-                <div class="year-filter">
-                    <div class="filter-btn" *ngFor="let data of yFilterArr" (click)="urlMaker(data, undefined, undefined)">
-                        {{data}}
-                    </div>
-                </div>
-                <div class="filter-heading">Successfull Launch</div>
-                <div class="launch-filter">
-                    <div class="filter-btn" *ngFor="let data of ['True','False']" (click)="urlMaker(undefined, data, undefined)">
-                        {{data}}
-                    </div>
-                </div>
-                <div class="filter-heading">Successfull Landing</div>
-                <div class="land-filter">
-                    <div class="filter-btn" *ngFor="let data of ['True','False']" (click)="urlMaker(undefined, undefined, data)">
-                        {{data}}
-                    </div>
-                </div>
-            </div>
-        </aside>
-        <section class="card-container">
-            <div *ngIf="!spaceData.length" class="no-records">
-                <h2>No Records Found</h2>
-            </div>
-            <div *ngFor="let data of spaceData" class="card">
-                <img class="card-img" src="../assets/images/missionIcon.PNG" alt="">
-                <div>
-                    <div>
-                        <span class="name-text card-sub-heading">{{data.mission_name}} # {{data.flight_number}}</span>
-                    </div>
-                    <div>
-                        <span class="card-sub-heading">Mission Ids :</span>
-                        <ul class="name-text">
-                            <li *ngFor="let name of data.mission_id">{{name}}</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <span class="card-sub-heading">Launch Year :</span>
-                        <span class="name-text"> {{data.launch_year}}</span>
-                    </div>
-                    <div>
-                        <span class="card-sub-heading">Successfull Launch :</span>
-                        <span class="name-text"> {{data.launch_success}}</span>
-                    </div>
-                    <div>
-                        <span class="card-sub-heading">Successfull Landing :</span>
-                        <span class="name-text"> {{data.launch_success==='true'?'true':'false'}}</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <header>
+    <h2>SpaceEx Launch Programs</h2>
+  </header>
+  <section class="container-body">
+    <aside class="filter-box">
+      <div class="filter">
+        <div class="filter-heading">Launch Year</div>
+        <div class="year-filter">
+          <button class="filter-btn" *ngFor="let data of yFilterArr;let i=index;" [ngClass]="{'highlight':focus.yr[i] }"
+            (click)="filterObj.year=data;urlMaker('yr',i)">
+            {{data}}
+          </button>
+        </div>
+        <div class="filter-heading">Successfull Launch</div>
+        <div class="launch-filter">
+          <button class="filter-btn" *ngFor="let data of ['True','False'];let i=index;"
+            [ngClass]="{'highlight':focus.lh[i] }" (click)="filterObj.launch=data;urlMaker('lh',i)">
+            {{data}}
+          </button>
+        </div>
+        <div class="filter-heading">Successfull Landing</div>
+        <div class="land-filter">
+          <button class="filter-btn" *ngFor="let data of ['True','False'];let i=index;"
+            [ngClass]="{'highlight':focus.ld[i] }" (click)="filterObj.land=data;urlMaker('ld',i)">
+            {{data}}
+          </button>
+        </div>
+      </div>
+    </aside>
+    <section class="card-container">
+      <div *ngIf="!spaceData.length" class="no-records">
+        <h2>No Records Found</h2>
+      </div>
+      <div *ngFor="let data of spaceData" class="card">
+        <img class="card-img" src="{{data.links.mission_patch_small}}" alt="">
+        <!-- <img class="card-img" src="../assets/images/missionIcon.PNG" alt=""> -->
+        <div>
+          <div>
+            <span class="name-text card-sub-heading">{{data.mission_name}} # {{data.flight_number}}</span>
+          </div>
+          <div>
+            <span class="card-sub-heading">Mission Ids :</span>
+            <ul class="name-text">
+              <li *ngFor="let name of data.mission_id">{{name}}</li>
+            </ul>
+          </div>
+          <div>
+            <span class="card-sub-heading">Launch Year :</span>
+            <span class="name-text"> {{data.launch_year}}</span>
+          </div>
+          <div>
+            <span class="card-sub-heading">Successfull Launch :</span>
+            <span class="name-text"> {{data.launch_success}}</span>
+          </div>
+          <div>
+            <span class="card-sub-heading">Successfull Landing :</span>
+            <span class="name-text"> {{data.launch_success==='true'?'true':'false'}}</span>
+          </div>
+        </div>
+      </div>
     </section>
-    <footer>
-        <h3 class="mar0">Developed By</h3>
-        <a class="padRL5 name-text" href="https://github.com/Gyanaranjandas">Gyana Ranjan Das</a>
-    </footer>
+  </section>
+  <footer>
+    <h3 class="mar0">Developed By</h3>
+    <a class="padRL5 name-text" href="https://github.com/Gyanaranjandas">Gyana Ranjan Das</a>
+  </footer>
 </div>

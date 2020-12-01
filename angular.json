@@ -119,10 +119,6 @@
           }
         }
       }
-    }
-  },
-  "defaultProject": "spaceEXlaunch",
-  "cli": {
-    "analytics": "a425c1f9-1002-4c93-8c2e-b6d33ed00a76"
-  }
+    }},
+  "defaultProject": "spaceEXlaunch"
 }
